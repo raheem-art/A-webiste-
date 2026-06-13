@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
 
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Intro */
+#intro {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  background: #ff69b4;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Letter */
+#letter {
+  display: none;
+  padding: 30px;
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.7;
+}
+
+/* Cards */
+.card {
+  background: white;
+  margin: 10px auto;
+  padding: 15px;
+  width: 85%;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: #ff4d88;
+  animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 SONG (HIDDEN YOUTUBE PLAYER) -->
+<iframe
+  id="music"
+  width="0"
+  height="0"
+  src=""
+  allow="autoplay">
+</iframe>
+
+<!-- INTRO -->
+<div id="intro">
+  <h1>Hey ❤️</h1>
+  <p>I made this for you…</p>
+  <button onclick="start()">Open</button>
+</div>
+
+<!-- LETTER -->
+<div id="letter">
+
+  <h2>💌</h2>
+
+  <p>
+  I can't even put into words how I feel, I can only feel it, but I guess that's what makes this feeling special.<br><br>
+
+  I love you and I know I say that a lot, but sometimes I feel like the words aren't enough. Sometimes I wish I could put you in my heart to feel what I feel with me. I wish I could merge you with my soul so you can experience the warmth you bring to it. I think a lot about you, and I don't just mean the fantasies. I think a lot about how bright the world seems when you're around and how quiet everywhere becomes, almost as if you're the only one in existence.<br><br>
+
+  Oh, even the words I speak right now aren't enough. I contemplated writing this because I feel like it already minimizes the feeling, because no words are enough to describe it.<br><br>
+
+  You make me wish I was a poet. Maybe if I were, I would know the right words to speak, but even if I can't say those words, I promise you I always feel them.<br><br>
+
+  You're that little light outside the tunnel. That light is what gives me hope. When I leave all this behind, I'll touch the light and feel the warmth of the light. I can't wait for the tunnel to end, and even if it doesn't, I'll always admire the light from a distance.
+  </p>
+
+  <br>
+
+  <button onclick="showNext()">Things I Love About You 💗</button>
+
+  <div id="cards"></div>
+
+</div>
+
+<script>
+const messages = [
+  "I love how you are.",
+  "I love your soul.",
+  "I love your smile.",
+  "I love how you look down at me when I lay on your lap.",
+  "I love when you hold my hands.",
+  "I love when you hug and cuddle me.",
+  "I love how awkward you are.",
+  "I love how pretty your eyes are.",
+  "I love your teeth.",
+  "I love your lips.",
+  "I love everything about you—your height, your body.",
+  "I love your mind."
+];
+
+let index = 0;
+
+function start() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("letter").style.display = "block";
+
+  // 🎵 START MUSIC
+  let music = document.getElementById("music");
+  music.src = "https://www.youtube.com/embed/ebocGBv9foE?autoplay=1&loop=1&playlist=ebocGBv9foE";
+
+  createHearts();
+}
+
+function showNext() {
+  if (index >= messages.length) return;
+
+  const div = document.createElement("div");
+  div.className = "card";
+  div.innerText = messages[index];
+
+  document.getElementById("cards").appendChild(div);
+  index++;
+
+  createHearts();
+}
+
+/* Hearts animation */
+function createHearts() {
+  for (let i = 0; i < 6; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+}
+</script>
+
+</body>
+  </html>
